@@ -1,4 +1,4 @@
-package at.fhv.lab1reference;
+package at.fhv;
 
 import eventside.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
