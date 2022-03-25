@@ -3,8 +3,8 @@ package writeside.domain;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
-import writeside.domain.booking;
 
 public class Room {
     private final String roomNumber;
