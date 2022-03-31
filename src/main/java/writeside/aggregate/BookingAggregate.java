@@ -50,5 +50,6 @@ public class BookingAggregate {
         if (booking.isEmpty()){
             throw new IllegalArgumentException("Booking id not valid");
         }
+        return booking.get();
     }
 }
