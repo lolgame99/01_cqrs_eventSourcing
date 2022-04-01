@@ -46,10 +46,11 @@ public class BookingAggregate {
     }
 
     public Booking handleCancelBookingCommand(CancelBookingCommand command) throws  Exception{
-        Optional<Booking> booking = bookingRepository.removeBookingById(command.getBookingId());
+        Optional<Booking> booking = bookingRepository.getBookingById(command.getBookingId());
         if (booking.isEmpty()){
             throw new IllegalArgumentException("Booking id not valid");
         }
+        booking.get().cancel();
         return booking.get();
     }
 }
