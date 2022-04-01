@@ -5,6 +5,10 @@ import java.util.UUID;
 public class CancelBookingCommand {
     private final UUID bookingId;
 
+    public CancelBookingCommand(){
+
+    }
+
     public CancelBookingCommand(UUID bookingId) {
         this.bookingId = bookingId;
     }
@@ -12,4 +16,5 @@ public class CancelBookingCommand {
     public UUID getBookingId() {
         return bookingId;
     }
+
 }

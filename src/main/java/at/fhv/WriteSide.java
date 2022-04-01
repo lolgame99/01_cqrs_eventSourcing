@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import writeside.EventPublisher;
+import writeside.domain.Room;
+import writeside.domain.RoomRepository;
 
 @SpringBootApplication
 @Configuration
@@ -18,8 +20,12 @@ public class WriteSide {
     @Autowired
     private EventPublisher publisher;
 
+    @Autowired
+    private RoomRepository roomRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(WriteSide.class, args);
+
     }
 
     @Bean
@@ -30,6 +36,8 @@ public class WriteSide {
             event.setCustomer("Customer1");
             event.setTimestamp(System.currentTimeMillis());
             System.out.println("Result: " + publisher.publishEvent(event));
+
+            roomRepository.addRoom(new Room("102",2));
         };
     }
 }

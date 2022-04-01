@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class BookingAggregate {
+public class BookingService {
     //TODO: implement event creation
 
     @Autowired
@@ -19,7 +19,7 @@ public class BookingAggregate {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public BookingAggregate() {
+    public BookingService() {
     }
 
     public Booking handleBookRoomCommand(BookRoomCommand command) throws Exception {
@@ -41,7 +41,7 @@ public class BookingAggregate {
 
         bookingRepository.addBooking(booking);
         room.get().addBooking(booking);
-
+        System.out.println("[WRITE] Created Booking "+booking.getId());
         return booking;
     }
 
