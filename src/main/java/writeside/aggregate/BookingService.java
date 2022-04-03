@@ -6,6 +6,8 @@ import writeside.command.BookRoomCommand;
 import writeside.command.CancelBookingCommand;
 import writeside.domain.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,7 +30,7 @@ public class BookingService {
             throw new IllegalArgumentException("Room number not valid");
         }
 
-        if (!room.get().isFree(command.getBookingStartTime(),command.getBookingEndTime())){
+        if (!isRoomFree(room.get(),command.getBookingStartTime(),command.getBookingEndTime())){
             throw new Exception("Room already Booked");
         }
 
@@ -40,7 +42,6 @@ public class BookingService {
                 PersonalDetails.create(command.getContactName(), command.getNumberOfPeople()));
 
         bookingRepository.addBooking(booking);
-        room.get().addBooking(booking);
         System.out.println("[WRITE] Created Booking "+booking.getId());
         return booking;
     }
@@ -51,6 +52,20 @@ public class BookingService {
             throw new IllegalArgumentException("Booking id not valid");
         }
         booking.get().cancel();
+        System.out.println("[WRITE] Canceled Booking "+command.getBookingId());
         return booking.get();
+    }
+
+    private Boolean isRoomFree(Room room, LocalDateTime start, LocalDateTime end){
+        Boolean isFree = true;
+        List<Booking> roomBookings = bookingRepository.getBookingByRoom(room);
+
+        for (Booking b: roomBookings) {
+            if (b.getState().equals(Booking.State.ACTIVE) &&
+                    !b.getStart().isAfter(end) && !start.isAfter(b.getEnd())){
+                isFree = false;
+            }
+        }
+        return isFree;
     }
 }

@@ -17,6 +17,7 @@ public class RoomRepository {
 
     public void addRoom(Room room){
         rooms.add(room);
+        System.out.println("[WRITE] Created Room "+room.getRoomNumber());
     }
 
     public Optional<Room> getRoomByRoomNumber(String rn){

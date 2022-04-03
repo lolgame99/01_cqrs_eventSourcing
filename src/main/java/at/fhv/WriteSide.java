@@ -31,13 +31,17 @@ public class WriteSide {
     @Bean
     public CommandLineRunner run() throws Exception {
         return args -> {
+            /*
             Event event = new Event();
             event.setContent("This is the content!");
             event.setCustomer("Customer1");
             event.setTimestamp(System.currentTimeMillis());
             System.out.println("Result: " + publisher.publishEvent(event));
+            */
 
             roomRepository.addRoom(new Room("102",2));
+            roomRepository.addRoom(new Room("103",3));
+            roomRepository.addRoom(new Room("104",4));
         };
     }
 }
