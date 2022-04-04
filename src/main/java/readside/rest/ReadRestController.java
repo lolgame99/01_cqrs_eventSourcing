@@ -1,4 +1,4 @@
-package readside;
+package readside.rest;
 
 import eventside.domain.BookingCancelledEvent;
 import eventside.domain.BookingCreatedEvent;
