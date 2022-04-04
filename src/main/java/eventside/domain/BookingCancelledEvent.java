@@ -9,13 +9,9 @@ public class BookingCancelledEvent extends Event{
 
     public BookingCancelledEvent(){}
 
-    public BookingCancelledEvent(String bookingId) {
-        this.bookingId = UUID.fromString(bookingId);
-        this.setTimestamp(LocalDateTime.now());
-    }
-
     public BookingCancelledEvent(UUID bookingId) {
         this.bookingId = bookingId;
+        this.setTimestamp(LocalDateTime.now());
     }
 
     public UUID getBookingId() {
