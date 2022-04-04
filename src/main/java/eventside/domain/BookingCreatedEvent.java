@@ -1,41 +1,42 @@
 package eventside.domain;
 
-import eventside.domain.Event;
-import writeside.domain.Booking;
-import writeside.domain.PersonalDetails;
-import writeside.domain.Room;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.Set;
 
 public class BookingCreatedEvent extends Event {
+    private final String roomNumber;
+    private final LocalDateTime bookingStartTime;
+    private final LocalDateTime bookingEndTime;
+    private final String contactName;
+    private final int numberOfPeople;
 
-
-    private String customer;
-    private long timestamp;
-    private String content;
-
-    public BookingCreatedEvent(String customer, long timestamp, String content) {
-        this.customer = customer;
-        this.timestamp = timestamp;
-        this.content = content;
-
-
+    public BookingCreatedEvent(String roomNumber, LocalDateTime bookingStartTime, LocalDateTime bookingEndTime, String contactName, int numberOfPeople) {
+        this.roomNumber = roomNumber;
+        this.bookingStartTime = bookingStartTime;
+        this.bookingEndTime = bookingEndTime;
+        this.contactName = contactName;
+        this.numberOfPeople = numberOfPeople;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public LocalDateTime getBookingStartTime() {
+        return bookingStartTime;
     }
 
-    public String getContent() {
-        return content;
+    public LocalDateTime getBookingEndTime() {
+        return bookingEndTime;
     }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
 
 }
-
