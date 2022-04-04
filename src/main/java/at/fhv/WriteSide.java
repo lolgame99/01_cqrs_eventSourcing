@@ -1,6 +1,5 @@
 package at.fhv;
 
-import eventside.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import writeside.EventPublisher;
+import writeside.WriteEventPublisher;
 import writeside.domain.Room;
 import writeside.domain.RoomRepository;
 
@@ -18,7 +17,7 @@ import writeside.domain.RoomRepository;
 public class WriteSide {
 
     @Autowired
-    private EventPublisher publisher;
+    private WriteEventPublisher publisher;
 
     @Autowired
     private RoomRepository roomRepository;
