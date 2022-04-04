@@ -16,6 +16,7 @@ public class BookingCreatedEvent extends Event {
         this.bookingEndTime = bookingEndTime;
         this.contactName = contactName;
         this.numberOfPeople = numberOfPeople;
+        this.setTimestamp(LocalDateTime.now());
     }
 
     public String getRoomNumber() {

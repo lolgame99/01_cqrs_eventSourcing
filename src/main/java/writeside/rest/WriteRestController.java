@@ -4,16 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import writeside.aggregate.BookingService;
+import writeside.application.BookingService;
 import writeside.command.BookRoomCommand;
 import writeside.command.CancelBookingCommand;
 import writeside.domain.Booking;
 
 @RestController
-public class BookingRestController {
+public class WriteRestController {
 
     @Autowired
     BookingService bookingService;
+
+    //http://localhost:8081/swagger-ui/index.html
 
     @PostMapping(value = "/createBooking", consumes = "application/json", produces = "application/json")
     public Boolean createBooking(@RequestBody BookRoomCommand command){

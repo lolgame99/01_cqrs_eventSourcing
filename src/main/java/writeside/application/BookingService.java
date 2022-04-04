@@ -1,7 +1,10 @@
-package writeside.aggregate;
+package writeside.application;
 
+import eventside.domain.BookingCancelledEvent;
+import eventside.domain.BookingCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import writeside.WriteEventPublisher;
 import writeside.command.BookRoomCommand;
 import writeside.command.CancelBookingCommand;
 import writeside.domain.*;
@@ -13,13 +16,15 @@ import java.util.UUID;
 
 @Component
 public class BookingService {
-    //TODO: implement event creation
 
     @Autowired
     private RoomRepository roomRepository;
 
     @Autowired
     private BookingRepository bookingRepository;
+
+    @Autowired
+    private WriteEventPublisher writeEventPublisher;
 
     public BookingService() {
     }
@@ -43,6 +48,15 @@ public class BookingService {
 
         bookingRepository.addBooking(booking);
         System.out.println("[WRITE] Created Booking "+booking.getId());
+
+        BookingCreatedEvent event = new BookingCreatedEvent(
+                command.getRoomNumber(),
+                command.getBookingStartTime(),
+                command.getBookingEndTime(),
+                command.getContactName(),
+                command.getNumberOfPeople());
+        writeEventPublisher.publishBookRoomEvent(event);
+
         return booking;
     }
 
@@ -53,6 +67,10 @@ public class BookingService {
         }
         booking.get().cancel();
         System.out.println("[WRITE] Canceled Booking "+command.getBookingId());
+
+        BookingCancelledEvent event = new BookingCancelledEvent(command.getBookingId());
+        writeEventPublisher.publishCancelBookingEvent(event);
+
         return booking.get();
     }
 

@@ -1,5 +1,7 @@
 package writeside;
 
+import eventside.domain.BookingCancelledEvent;
+import eventside.domain.BookingCreatedEvent;
 import eventside.domain.Event;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -14,11 +16,11 @@ public class WriteEventPublisher {
     public WriteEventPublisher() {
     }
 
-    public Boolean publishBookRoomEvent(Event event) {
+    public Boolean publishBookRoomEvent(BookingCreatedEvent event) {
         System.out.println("[WRITE] Publishing BookRoomEvent");
         return localApiClient
                 .post()
-                .uri("/event/")
+                .uri("/createBooking/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(event),Event.class)
@@ -27,11 +29,11 @@ public class WriteEventPublisher {
                 .block();
     }
 
-    public Boolean publishCancelBookingEvent(Event event) {
+    public Boolean publishCancelBookingEvent(BookingCancelledEvent event) {
         System.out.println("[WRITE] Publishing CancelBookingEvent");
         return localApiClient
                 .post()
-                .uri("/event/")
+                .uri("/cancelBooking/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(event),Event.class)
