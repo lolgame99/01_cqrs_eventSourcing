@@ -1,41 +1,22 @@
 package eventside.domain;
 
-public class Event {
+import java.time.LocalDateTime;
 
-    private String customer;
-    private long timestamp;
-    private String content;
+public abstract class Event {
+    private LocalDateTime timestamp;
 
-    public String getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
-
-    public long getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     @Override
     public String toString() {
         return "Event{" +
-                "customer='" + customer + '\'' +
-                ", timestamp=" + timestamp +
-                ", content='" + content + '\'' +
+                "timestamp=" + timestamp +
                 '}';
     }
 }

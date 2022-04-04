@@ -49,13 +49,9 @@ public class Booking {
         return new Booking(id, room, start, end, personalDetails);
     }
 
-    /* ### Business logic ### */
-
     public void cancel() {
         state = State.CANCELLED;
     }
-
-    /* ### Getter ### */
 
     public UUID getId() {
         return id;
