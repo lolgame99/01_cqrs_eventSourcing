@@ -50,6 +50,7 @@ public class BookingService {
         System.out.println("[WRITE] Created Booking "+booking.getId());
 
         BookingCreatedEvent event = new BookingCreatedEvent(
+                booking.getId(),
                 command.getRoomNumber(),
                 command.getBookingStartTime(),
                 command.getBookingEndTime(),

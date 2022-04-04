@@ -8,14 +8,14 @@ import java.util.UUID;
 
 public class BookingDTO {
     private final UUID id;
-    private final Room room;
+    private final String roomNumber;
     private final LocalDateTime start;
     private final LocalDateTime end;
     private final PersonalDetails personalDetails;
 
-    public BookingDTO(UUID id, Room room, LocalDateTime start, LocalDateTime end, PersonalDetails personalDetails) {
+    public BookingDTO(UUID id, String roomNumber, LocalDateTime start, LocalDateTime end, PersonalDetails personalDetails) {
         this.id = id;
-        this.room = room;
+        this.roomNumber = roomNumber;
         this.start = start;
         this.end = end;
         this.personalDetails = personalDetails;
@@ -25,8 +25,8 @@ public class BookingDTO {
         return id;
     }
 
-    public Room getRoom() {
-        return room;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
     public LocalDateTime getStart() {

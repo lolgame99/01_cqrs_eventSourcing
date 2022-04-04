@@ -4,13 +4,15 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class BookingCreatedEvent extends Event {
+    private final UUID bookingId;
     private final String roomNumber;
     private final LocalDateTime bookingStartTime;
     private final LocalDateTime bookingEndTime;
     private final String contactName;
     private final int numberOfPeople;
 
-    public BookingCreatedEvent(String roomNumber, LocalDateTime bookingStartTime, LocalDateTime bookingEndTime, String contactName, int numberOfPeople) {
+    public BookingCreatedEvent(UUID id,String roomNumber, LocalDateTime bookingStartTime, LocalDateTime bookingEndTime, String contactName, int numberOfPeople) {
+        this.bookingId = id;
         this.roomNumber = roomNumber;
         this.bookingStartTime = bookingStartTime;
         this.bookingEndTime = bookingEndTime;
@@ -39,5 +41,7 @@ public class BookingCreatedEvent extends Event {
         return numberOfPeople;
     }
 
-
+    public UUID getBookingId() {
+        return bookingId;
+    }
 }
