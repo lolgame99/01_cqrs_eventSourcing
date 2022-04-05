@@ -34,7 +34,7 @@ public class ReadRestController {
     }
 
     @PostMapping(value = "/cancelBooking", consumes = "application/json", produces = "application/json")
-    public boolean createBooking(@RequestBody BookingCancelledEvent event) {
+    public boolean cancelBooking(@RequestBody BookingCancelledEvent event) {
         System.out.println("[READ] Event received: "+event);
         projection.processBookingCancelledEvent(event);
         return true;
