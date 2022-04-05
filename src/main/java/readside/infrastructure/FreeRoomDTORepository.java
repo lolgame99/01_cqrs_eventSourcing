@@ -22,8 +22,8 @@ public class FreeRoomDTORepository {
         for (FreeRoomDTO r:freeRooms) {
             if (
                     r.getMaxPeople() >= personCount &&
-                    r.getFrom().isBefore(from) &&
-                    r.getTo().isAfter(to)){
+                    r.getFrom().compareTo(from) <= 0 &&
+                    r.getTo().compareTo(to) >= 0){
                 result.add(r);
             }
         }
