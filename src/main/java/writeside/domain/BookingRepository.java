@@ -11,10 +11,6 @@ import java.util.*;
 public class BookingRepository {
     private List<Booking> bookings = new LinkedList<>();
 
-    public List<Booking> getAllBookings(){
-        return Collections.unmodifiableList(bookings);
-    }
-
     public void addBooking(Booking booking){
         bookings.add(booking);
     }
@@ -36,28 +32,5 @@ public class BookingRepository {
             }
         }
         return result;
-    }
-
-    public List<Booking> getBookingsByDate(LocalDateTime dateTime){
-        List<Booking> result = new LinkedList<>();
-        for (Booking b: bookings) {
-            if (dateTime.isAfter(b.getStart()) && dateTime.isBefore(b.getEnd())){
-                result.add(b);
-            }
-        }
-
-        return result;
-
-    }
-
-    public Optional<Booking> removeBookingById(UUID id){
-        Booking result = null;
-        for (Booking b: bookings) {
-            if (b.getId().equals(id)){
-                result = b;
-            }
-        }
-        bookings.remove(result);
-        return Optional.of(result);
     }
 }

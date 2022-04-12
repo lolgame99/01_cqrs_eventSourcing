@@ -21,8 +21,6 @@ public class PersonalDetails {
         return new PersonalDetails(bookingMadeBy, numberOfPeople);
     }
 
-    /* ### Getter ### */
-
     public String getBookingMadeBy() {
         return bookingMadeBy;
     }
